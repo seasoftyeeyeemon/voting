@@ -18,3 +18,10 @@ Route::get('/', function () {
 Route::get('events', 'EventController@index');
 Route::get('events/create', 'EventController@create');
 Route::post('events/store', 'EventController@store')->name('events.store');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('users','Admin\UserController');
+
+Route::resource('competitions','CompetitionController');
