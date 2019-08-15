@@ -16,8 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('events', 'EventController@index');
-Route::get('events/create', 'EventController@create');
+Route::get('events/create', 'EventController@create')->name('events.create');
+Route::get('events/edit/{id}', 'EventController@edit')->name('events.edit');
 Route::post('events/store', 'EventController@store')->name('events.store');
+Route::patch('events/update/{id}', 'EventController@update')->name('events.update');
+Route::delete('events/destroy/{id}', 'EventController@destroy')->name('events.destroy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

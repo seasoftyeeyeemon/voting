@@ -49,7 +49,7 @@ class EventController extends Controller
             'end_date'=>request('event_end')
         ]);
         $event->save();
-        return redirect('/events')->with('success','Events has been addes');
+        return redirect('/events')->with('success','Events has been added');
     }
 
     /**
@@ -71,7 +71,8 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Event::find($id);
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -83,7 +84,20 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'event_title'=>'required',
+            'event_desp'=>'required',
+            'event_start'=>'required',
+            'event_end'=>'required'
+        ]);
+        $event = Event::find($id);
+        $event->title=$request->get('event_title');
+        $event->description=$request->get('event_desp');
+        $event->start_date=$request->get('event_start');
+        $event->end_date=$request->get('event_end');
+        $event->save();
+
+        return redirect('/events')->with('success', 'Event has been updated');
     }
 
     /**
@@ -94,6 +108,9 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = Event::find($id);
+        $event->delete();
+
+        return redirect('/events')->with('success', 'Event has been deleted Successfully!');
     }
 }
