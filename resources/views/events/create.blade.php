@@ -36,6 +36,6 @@
             <button type="submit" class="btn btn-success mr-2">Create</button>
             </form>
         </div>
-        </div>
+    </div>
     
 @endsection
