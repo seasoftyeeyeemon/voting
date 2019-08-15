@@ -12,4 +12,8 @@ class Event extends Model
         'start_date',
         'end_date'
       ];
+
+      public function competitions(){
+        return $this->belongsToMany('App\Competition');
+      }
 }
