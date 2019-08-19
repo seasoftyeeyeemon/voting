@@ -22,10 +22,11 @@ class CreateCompetitionsTable extends Migration
             $table->string('education');
             $table->string('activity');
             $table->string('phone');
-            $table->integer('vote');
+            $table->integer('vote')->default(0);
             $table->integer('event_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
+           
         });
     }
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Competition;
+use Auth;
+
 class CompetitionController extends Controller
 {
     /**
@@ -13,7 +15,9 @@ class CompetitionController extends Controller
      */
     public function index()
     {
-        //
+        $competitions=Competition::where('user_id',Auth::id())->get();
+       
+        return view('user.competition.index',compact('competitions'));
     }
 
     /**
@@ -25,13 +29,48 @@ class CompetitionController extends Controller
     {
         return view('user.competition.create');
     }
+  public function competitionCreate(Request $request){
 
+    $validatedData = $request->validate([
+        'name' => 'required',
+        'address' => 'required',
+        'featured_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'age' => 'required',
+        'education' => 'required',
+    ]);
+
+    if(empty($request->session()->get('competition'))){
+        $competition = new Competition();
+        $fileName = "image-" . time() . '.' . request()->featured_image->getClientOriginalExtension();
+        $request->featured_image->storeAs('featured_image', $fileName);
+        $competition->fill($validatedData);
+       
+        $request->session()->put('competition', $competition);
+    }else{
+        $competition = $request->session()->get('competition');
+        $fileName = "image-" . time() . '.' . request()->featured_image->getClientOriginalExtension();
+        $request->featured_image->storeAs('featured_image', $fileName);
+        $competition->image = $fileName;
+        $competition->fill($validatedData);
+        $request->session()->put('competition', $competition);
+    }
+    
+
+    return redirect('competitions/create-preview');
+
+  }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function createPreview(Request $request)
+    {
+        $competition = $request->session()->get('competition');
+        return view('user.competition.preview',compact('competition',$competition));
+    }
     public function store(Request $request){
        
         $competition=new Competition();
@@ -53,6 +92,7 @@ class CompetitionController extends Controller
         $competition->education=$request->education;
         $competition->age=$request->age;
         $competition->activity=$request->activity;
+        $competition->event_id=1;
         $competition->phone=$request->phone;
         $competition->user_id=Auth::user()->id;
         $competition->photo=$imageName;   
