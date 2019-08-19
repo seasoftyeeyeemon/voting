@@ -1,0 +1,53 @@
+
+.left_bar .eventPhotoBlog,
+.modal-body .eventPhotoBlog {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.left_bar figure,
+.modal-body figure {
+    position: relative;
+    margin-bottom: 0;
+}
+.left_bar figure .vote,
+.modal-body .vote {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+}
+.left_bar figure .vote button,
+.modal-body figure .vote button {
+    background: none;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+.left_bar figure .vote img,
+.modal-body figure .vote img {
+    width: 30px;
+    border-radius: 50%;
+}
+.left_bar figure .vote img:hover
+.modal-body figure .vote img:hover {
+    background: #e30a17;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+}
+.left_bar figure .vote button.active img
+.modal-body figure .vote button.active img {
+    background: #e30a17;
+    border-radius: 50%;
+}
+.left_bar .eventPhotoBlog .photoDesp ,
+.modal-body .eventPhotoBlog .photoDesp {
+    padding: 5px 10px;
+}
+
+.right_bar .next_event .next_event1,
+.left_bar .eventBlog {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.modal-dialog {
+    max-width: 80%;
+}

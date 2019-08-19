@@ -1,2 +1,1 @@
 @extends('user.layouts.app')
-
