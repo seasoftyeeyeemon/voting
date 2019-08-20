@@ -63,6 +63,7 @@
                 </a>
             </div>
         </div>
+
         <div class="container mt-5">
             <div class="row">
                @yield('content')
@@ -81,60 +82,17 @@
                     </div>
                     <div id="calendar"></div>
                     <div class="next_event mt-4">
-                        <div class="next_event1 row align-items-center m-0 mb-3">
+                    @foreach($events as $event)
+                        <div class="next_event1 row align-items-center m-0 mb-3 pt-2 pb-2">
                             <div class="col-md-6">
                                 <img src="photo/nextevent.jpg" alt="" class="w-100">
                             </div>
                             <div class="col-md-6 pl-0 pt-3">
-                                <h5>Next Event 1</h5>
-                                <p >Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p> 
+                                <h5>{{$event->title}}</h5>
+                                <p >{{$event->description}}</p> 
                             </div>
                         </div>
-                        <div class="next_event1 row align-items-center m-0 mb-3">
-                            <div class="col-md-6">
-                                <img src="photo/nextevent.jpg" alt="" class="w-100">
-                            </div>
-                            <div class="col-md-6 pl-0 pt-3">
-                                <h5>Next Event 2</h5>
-                                <p >Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p> 
-                            </div>
-                        </div>
-                        <div class="next_event1 row align-items-center m-0 mb-3">
-                            <div class="col-md-6">
-                                <img src="photo/nextevent.jpg" alt="" class="w-100">
-                            </div>
-                            <div class="col-md-6 pl-0 pt-3">
-                                <h5>Next Event 3</h5>
-                                <p >Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p> 
-                            </div>
-                        </div>
-                        <div class="next_event1 row align-items-center m-0 mb-3">
-                            <div class="col-md-6">
-                                <img src="photo/nextevent.jpg" alt="" class="w-100">
-                            </div>
-                            <div class="col-md-6 pl-0 pt-3">
-                                <h5>Next Event 1</h5>
-                                <p >Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p> 
-                            </div>
-                        </div>
-                        <div class="next_event1 row align-items-center m-0 mb-3">
-                            <div class="col-md-6">
-                                <img src="photo/nextevent.jpg" alt="" class="w-100">
-                            </div>
-                            <div class="col-md-6 pl-0 pt-3">
-                                <h5>Next Event 2</h5>
-                                <p >Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p> 
-                            </div>
-                        </div>
-                        <div class="next_event1 row align-items-center m-0 mb-3">
-                            <div class="col-md-6">
-                                <img src="photo/nextevent.jpg" alt="" class="w-100">
-                            </div>
-                            <div class="col-md-6 pl-0 pt-3">
-                                <h5>Next Event 3</h5>
-                                <p >Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p> 
-                            </div>
-                        </div>
+                    @endforeach
                     </div>
                 </div>
             </div>
