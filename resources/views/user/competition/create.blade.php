@@ -7,7 +7,8 @@
         <div class="form-group row">
             {!! Form::label('Competitior Name','Name', [ 'class'=>'col-md-4 col-form-label text-md-right']) !!}
             <div class="col-md-6">
-                {!! Form::text('name',old('name'), [
+           {{dd(competition->name)}}
+                {!! Form::text('name',old('$competition->name'), [
                 'class'=>$errors->has('name') ? 'form-control is-invalid' : 'form-control',
                 'placeholder' =>"Your Name....",'autofocus'
                 ]) !!}
@@ -47,7 +48,7 @@
             </div>
         </div>
         <div class="form-group row">
-            {!! Form::label('Competitior Activity','Activity', [ 'class'=>'col-md-4 col-form-label text-md-right']) !!}
+            {!! Form::label('Activity','Activity', [ 'class'=>'col-md-4 col-form-label text-md-right']) !!}
             <div class="col-md-6">
                 {!! Form::text('activity',old('activity'), [
                 'class'=>$errors->has('activity') ? 'form-control is-invalid' : 'form-control',
@@ -56,7 +57,7 @@
             </div>
         </div>
         <div class="form-group row">
-            {!! Form::label('Competitior Phone','Phone', [ 'class'=>'col-md-4 col-form-label text-md-right']) !!}
+            {!! Form::label('Phone','Phone', [ 'class'=>'col-md-4 col-form-label text-md-right']) !!}
             <div class="col-md-6">
                 {!! Form::text('phone',old('phone'), [
                 'class'=>$errors->has('phone') ? 'form-control is-invalid' : 'form-control',
@@ -72,7 +73,7 @@
                 </button>
             </div>
         </div>
-            {{ Form::close() }}
+        {{ Form::close() }}
 
     </div>
     </div>

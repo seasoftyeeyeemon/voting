@@ -36,21 +36,24 @@ class CompetitionController extends Controller
         'address' => 'required',
         'featured_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'age' => 'required',
+        'phone'=>'required|min:11|max:11',
+        'activity'=>'required',
         'education' => 'required',
     ]);
 
     if(empty($request->session()->get('competition'))){
         $competition = new Competition();
         $fileName = "image-" . time() . '.' . request()->featured_image->getClientOriginalExtension();
-        $request->featured_image->storeAs('featured_image', $fileName);
+        $request->featured_image->storeAs('featuredImg', $fileName);
+        $competition->photo = $fileName;
         $competition->fill($validatedData);
-       
+        
         $request->session()->put('competition', $competition);
     }else{
         $competition = $request->session()->get('competition');
         $fileName = "image-" . time() . '.' . request()->featured_image->getClientOriginalExtension();
-        $request->featured_image->storeAs('featured_image', $fileName);
-        $competition->image = $fileName;
+        $request->featured_image->storeAs('featuredImg', $fileName);
+        $competition->photo = $fileName;
         $competition->fill($validatedData);
         $request->session()->put('competition', $competition);
     }
@@ -72,31 +75,11 @@ class CompetitionController extends Controller
         return view('user.competition.preview',compact('competition',$competition));
     }
     public function store(Request $request){
-       
+
         $competition=new Competition();
-        request()->validate([
-
-            'featured_image' => 'required',
-            'name'=>'required',
-            'address'=>'required',
-            'education'=>'required',
-            'age'=>'required',
-            'activity'=>'required',
-            'phone'=>'required'
-
-        ]);
-        $imageName = time().'.'.request()->featured_image->getClientOriginalExtension();
-        request()->featured_image->move(public_path('images'), $imageName);
-        $competition->name=$request->name;
-        $competition->address=$request->address;
-        $competition->education=$request->education;
-        $competition->age=$request->age;
-        $competition->activity=$request->activity;
-        $competition->event_id=1;
-        $competition->phone=$request->phone;
+        $competition->event_id=Auth::user()->id;
         $competition->user_id=Auth::user()->id;
-        $competition->photo=$imageName;   
-       
+        $competition = $request->session()->get('competition');  
         $competition->save();
         return redirect()->route('competitions.index')
 

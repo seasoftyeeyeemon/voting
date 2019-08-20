@@ -19,6 +19,7 @@ Route::get('events', 'EventController@index');
 Route::get('events/create', 'EventController@create')->name('events.create');
 Route::get('events/edit/{id}', 'EventController@edit')->name('events.edit');
 Route::post('events/store', 'EventController@store')->name('events.store');
+Route::get('events/show/{id}','EventController@show')->name('events.show');
 Route::patch('events/update/{id}', 'EventController@update')->name('events.update');
 Route::delete('events/destroy/{id}', 'EventController@destroy')->name('events.destroy');
 Auth::routes();
@@ -32,3 +33,4 @@ Route::get('/competitions/create-step1', 'CompetitionController@create')->name('
 Route::post('/competitions/create-step1', 'CompetitionController@competitionCreate')->name('competitions.store');
 Route::get('/competitions/create-preview', 'CompetitionController@createPreview')->name('competitions.preview');
 Route::post('/competitions/create-preview', 'CompetitionController@CompetitionController@competitionPreview');
+Route::post('/competitions/store', 'CompetitionController@store');
