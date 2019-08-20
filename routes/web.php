@@ -21,6 +21,7 @@ Route::get('events/edit/{id}', 'EventController@edit')->name('events.edit');
 Route::post('events/store', 'EventController@store')->name('events.store');
 Route::patch('events/update/{id}', 'EventController@update')->name('events.update');
 Route::delete('events/destroy/{id}', 'EventController@destroy')->name('events.destroy');
+Route::get('events/show/{id}', 'EventController@show')->name('events.show');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

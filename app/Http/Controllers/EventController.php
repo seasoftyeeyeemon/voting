@@ -59,8 +59,9 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   $events=Event::all();
+        $event = Event::find($id);
+        return view('user.details', compact('event','events'));
     }
 
     /**

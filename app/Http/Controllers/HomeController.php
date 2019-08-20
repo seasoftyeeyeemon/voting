@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Prospect;
+use App\Event;
 
 class HomeController extends Controller
 {
@@ -29,7 +30,8 @@ class HomeController extends Controller
             
             return view('admin.index');
         }elseif(Auth::user()->role===0){
-            return view('user.index');
+            $events=Event::all();
+            return view('user.index', compact('events'));
         }
 
         return view('home');
