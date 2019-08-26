@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use Image;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
-{
+{   
     /**
      * Display a listing of the resource.
      *
@@ -40,14 +42,25 @@ class EventController extends Controller
             'event_title'=>'required',
             'event_desp'=>'required',
             'event_start'=>'required',
-            'event_end'=>'required'
+            'event_end'=>'required',
+            'event_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if($request->hasFile('event_photo')) {
+            $image=$request->file('event_photo');
+            $filename=time().'.'.$image->getClientOriginalExtension();
+            $location=public_path('images/eventPhoto/'.$filename);
+            Image::make($image->getRealPath())->resize(800,400)->save($location);
+        }
+
         $event = new Event([
             'title'=>request('event_title'),
             'description'=>request('event_desp'),
             'start_date'=>request('event_start'),
-            'end_date'=>request('event_end')
+            'end_date'=>request('event_end'),
+            'image'=>$filename,
         ]);
+          
         $event->save();
         return redirect('/events')->with('success','Events has been added');
     }
@@ -89,13 +102,24 @@ class EventController extends Controller
             'event_title'=>'required',
             'event_desp'=>'required',
             'event_start'=>'required',
-            'event_end'=>'required'
+            'event_end'=>'required',
+            'event_photo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if($request->hasFile('event_photo')) {
+            $image = $request->file('event_photo');
+            $filename=time().'.'.$image->getClientOriginalExtension();
+            $location=public_path('images/eventPhoto/'.$filename);
+            Image::make($image->getRealPath())->resize(800,400)->save($location);
+        }
+
         $event = Event::find($id);
         $event->title=$request->get('event_title');
         $event->description=$request->get('event_desp');
         $event->start_date=$request->get('event_start');
         $event->end_date=$request->get('event_end');
+        $event->image = $filename;
+
         $event->save();
 
         return redirect('/events')->with('success', 'Event has been updated');
@@ -114,4 +138,14 @@ class EventController extends Controller
 
         return redirect('/events')->with('success', 'Event has been deleted Successfully!');
     }
+
+    public function refreshDB()
+    {
+        DB::statement("SET @count = 0;");
+        DB::statement("UPDATE events SET events.`id` = @count:= @count + 1;");
+        DB::statement("ALTER TABLE events AUTO_INCREMENT = 1;");
+
+        return redirect('/events');
+    }
+
 }

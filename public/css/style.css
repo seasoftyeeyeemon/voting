@@ -51,3 +51,72 @@
 .modal-dialog {
     max-width: 80%;
 }
+
+
+.event_create_form .event_image_div .btn_upload,
+.event_edit_form .event_image_div .btn_upload {
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+    background-color: #2a72d4;
+    border: 1px solid #166b8a;
+    padding: 5px 10px;
+  }
+  
+  .event_create_form .event_image_div .btn_upload:hover,
+  .event_create_form .event_image_div .btn_upload:focus,
+  .event_edit_form .event_image_div .btn_upload:hover,
+  .event_edit_form .event_image_div .btn_upload:focus {
+    background-color: #7ca9e6;
+  }
+  
+  .event_create_form .event_image_div,
+  .event_edit_form .event_image_div {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px !important;
+  }
+  
+  .event_create_form .event_image_div .btn_upload input,
+  .event_edit_form .event_image_div .btn_upload input {
+    cursor: pointer;
+    height: 100%;
+    position: absolute;
+    filter: alpha(opacity=1);
+    -moz-opacity: 0;
+    opacity: 0;
+  }
+  
+  .event_create_form .event_image_div .it,
+  .event_edit_form .event_image_div .it {
+    height: 100px;
+    margin-left: 10px;
+  }
+  
+  .event_create_form .event_image_div .btn-rmv1,
+  .event_edit_form .event_image_div .btn-rmv1{
+    display: none;
+  }
+  
+  .event_create_form .event_image_div .rmv
+  .event_edit_form .event_image_div .rmv {
+    cursor: pointer;
+    color: #fff;
+    border-radius: 30px;
+    border: 1px solid #fff;
+    display: inline-block;
+    background: rgba(255, 0, 0, 1);
+    margin: -5px -10px;
+  }
+  
+  .event_create_form .event_image_div .rmv:hover,
+  .event_edit_form .event_image_div .rmv:hover {
+    background: rgba(255, 0, 0, 0.5);
+  }
+
+  .event_index_table img,
+  .event_edit_form .preview1 {
+    width: 150px;
+  }

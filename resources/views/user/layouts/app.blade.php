@@ -85,7 +85,7 @@
                     @foreach($events as $event)
                         <div class="next_event1 row align-items-center m-0 mb-3 pt-2 pb-2">
                             <div class="col-md-6">
-                                <img src="photo/nextevent.jpg" alt="" class="w-100">
+                                <img src="{{asset(url('images/eventPhoto/'.$event->image))}}" alt="" class="w-100">
                             </div>
                             <div class="col-md-6 pl-0 pt-3">
                                 <h5>{{$event->title}}</h5>

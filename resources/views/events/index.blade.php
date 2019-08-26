@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container mt-5">
+    <div class="container mt-5 event_index_table">
 
         @if(session()->get('success'))
         <div class="alert alert-success">
@@ -10,10 +10,16 @@
         </div><br />
         @endif
 
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Events List</h2>
+            <a href="{{route('events.refreshDB')}}" class="btn btn-secondary">Refresh ID</a>
+        </div>
+
         <table class="table table-striped">
             <thead>
                 <tr>
                     <td>ID</td>
+                    <td>Event Photo</td>
                     <td>Title</td>
                     <td>Description</td>
                     <td>Start Date</td>
@@ -26,6 +32,9 @@
                 @foreach($events as $event)
                 <tr>
                     <td>{{$event->id}}</td>
+                    <td>
+                        <img src="{{asset(url('images/eventPhoto/'.$event->image))}}" alt="">
+                    </td>
                     <td>{{$event->title}}</td>
                     <td>{{$event->description}}</td>
                     <td>{{$event->start_date}}</td>

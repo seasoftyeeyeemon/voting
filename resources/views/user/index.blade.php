@@ -7,7 +7,7 @@
                      @foreach($events as $event)
                         <li class="row eventBlog ml-0 mr-0 pt-3 pb-3 mb-4">
                             <figure class="col-md-4">
-                                <img src="photo/event.jpg" alt="" class="w-100">
+                                <img src="{{asset(url('images/eventPhoto/'.$event->image))}}" alt="" class="w-100">
                             </figure>
                             <div class="col-md-8">
                                 <h3>{{$event->title}}</h3>
@@ -44,50 +44,22 @@
 
                     <h2>PREVIOUS EVENTS</h2>
                     <ul class="pl-0">
+                    @foreach($events as $event)
                         <li class="row eventBlog ml-0 mr-0 pt-3 pb-3 mb-4">
                             <figure class="col-md-4">
-                                <img src="photo/event.jpg" alt="" class="w-100">
+                                <img src="{{asset(url('images/eventPhoto/'.$event->image))}}" alt="" class="w-100">
                             </figure>
                             <div class="col-md-8">
-                                <h3>Title 1</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure eligendi, atque velit reiciendis magnam rerum eius quo corrupti dicta </p>
+                                <h3>{{$event->title}}</h3>
+                                <p>{{$event->description}} </p>
                                 <p class="d-flex justify-content-between">
-                                    <span>Start Date: 1.1.1</span>
-                                    <span>End Date: 1.1.1</span>
+                                    <span>Start Date: {{$event->start_date}}</span>
+                                    <span>End Date: {{$event->end_date}}</span>
                                 </p>
                                 <a href="#" class="btn btn-success">More Detail</a>
                             </div>
                         </li>
-
-                        <li class="row eventBlog ml-0 mr-0 pt-3 pb-3 mb-4">
-                            <figure class="col-md-4">
-                                <img src="photo/event.jpg" alt="" class="w-100">
-                            </figure>
-                            <div class="col-md-8">
-                                <h3>Title 1</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure eligendi, atque velit reiciendis magnam rerum eius quo corrupti dicta </p>
-                                <p class="d-flex justify-content-between">
-                                    <span>Start Date: 1.1.1</span>
-                                    <span>End Date: 1.1.1</span>
-                                </p>
-                                <a href="#" class="btn btn-success">More Detail</a>
-                            </div>
-                        </li>
-
-                        <li class="row eventBlog ml-0 mr-0 pt-3 pb-3 mb-4">
-                            <figure class="col-md-4">
-                                <img src="photo/event.jpg" alt="" class="w-100">
-                            </figure>
-                            <div class="col-md-8">
-                                <h3>Title 1</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure eligendi, atque velit reiciendis magnam rerum eius quo corrupti dicta </p>
-                                <p class="d-flex justify-content-between">
-                                    <span>Start Date: 1.1.1</span>
-                                    <span>End Date: 1.1.1</span>
-                                </p>
-                                <a href="#" class="btn btn-success">More Detail</a>
-                            </div>
-                        </li>
+                    @endforeach
                     </ul>   
 
                     <div aria-label="Page navigation">

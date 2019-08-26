@@ -23,6 +23,7 @@ Route::get('events/show/{id}','EventController@show')->name('events.show');
 Route::patch('events/update/{id}', 'EventController@update')->name('events.update');
 Route::delete('events/destroy/{id}', 'EventController@destroy')->name('events.destroy');
 Route::get('events/show/{id}', 'EventController@show')->name('events.show');
+Route::get('events/refreshDB', 'EventController@refreshDB')->name('events.refreshDB');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
