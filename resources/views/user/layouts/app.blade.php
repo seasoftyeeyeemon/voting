@@ -17,7 +17,7 @@
                     <img src="photo/logoevent.png" alt="" style="width: 100px;">
                     <span class="text-white">Great for yours photo</span>
                 </div>
-                <ul class="d-flex align-items-center mb-0">
+                <!-- <ul class="d-flex align-items-center mb-0">
                     <li>
                         <a href="#" class="text-white">Login</a>
                     </li>
@@ -25,7 +25,38 @@
                     <li>
                         <a href="#" class="text-white">Register</a>
                     </li>
-                </ul>
+                </ul> -->
+                <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
             </div>
         </div>
         <div class="banner">
@@ -82,17 +113,17 @@
                     </div>
                     <div id="calendar"></div>
                     <div class="next_event mt-4">
-                    @foreach($events as $event)
+                 
                         <div class="next_event1 row align-items-center m-0 mb-3 pt-2 pb-2">
                             <div class="col-md-6">
                                 <img src="{{asset(url('images/eventPhoto/'.$event->image))}}" alt="" class="w-100">
                             </div>
                             <div class="col-md-6 pl-0 pt-3">
-                                <h5>{{$event->title}}</h5>
-                                <p >{{$event->description}}</p> 
+                                <h5></h5>
+                                <p ></p> 
                             </div>
                         </div>
-                    @endforeach
+                   
                     </div>
                 </div>
             </div>

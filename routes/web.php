@@ -1,5 +1,5 @@
 <?php
-
+use App\Event;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $events=Event::all();
+    return view('user.index',compact('events'));
 });
 
 Route::get('events', 'EventController@index');
@@ -31,8 +32,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('users','Admin\UserController');
 
 // Route::resource('competitions','CompetitionController');
-Route::get('/competitions/create-step1', 'CompetitionController@create')->name('competitions.create');
+Route::get('/competitions/create-step1/{event_id}', 'CompetitionController@create')->name('competitions.create');
 Route::post('/competitions/create-step1', 'CompetitionController@competitionCreate')->name('competitions.store');
 Route::get('/competitions/create-preview', 'CompetitionController@createPreview')->name('competitions.preview');
 Route::post('/competitions/create-preview', 'CompetitionController@CompetitionController@competitionPreview');
-Route::post('/competitions/store', 'CompetitionController@store');
+Route::post('/competitions/store', 'CompetitionController@store')->name('competitions.upload');

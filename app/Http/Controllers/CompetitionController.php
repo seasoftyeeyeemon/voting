@@ -25,9 +25,11 @@ class CompetitionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request,$event_id)
     {
-        return view('user.competition.create');
+        $eventid=$event_id;
+        $competition = $request->session()->get('competition');
+        return view('user.competition.create',compact('eventid','competition'));
     }
   public function competitionCreate(Request $request){
 
@@ -40,14 +42,16 @@ class CompetitionController extends Controller
         'activity'=>'required',
         'education' => 'required',
     ]);
+    
 
     if(empty($request->session()->get('competition'))){
         $competition = new Competition();
         $fileName = "image-" . time() . '.' . request()->featured_image->getClientOriginalExtension();
         $request->featured_image->storeAs('featuredImg', $fileName);
         $competition->photo = $fileName;
+        $competition->event_id=$request->event_id;
+        $competition->user_id=Auth::user()->id;
         $competition->fill($validatedData);
-        
         $request->session()->put('competition', $competition);
     }else{
         $competition = $request->session()->get('competition');
@@ -74,12 +78,14 @@ class CompetitionController extends Controller
         $competition = $request->session()->get('competition');
         return view('user.competition.preview',compact('competition',$competition));
     }
+
     public function store(Request $request){
 
         $competition=new Competition();
-        $competition->event_id=Auth::user()->id;
-        $competition->user_id=Auth::user()->id;
-        $competition = $request->session()->get('competition');  
+        $competition = $request->session()->get('competition'); 
+        $competition=$competition->validate([
+            'user_id'=>'unique'
+        ]);
         $competition->save();
         return redirect()->route('competitions.index')
 

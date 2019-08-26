@@ -9,6 +9,6 @@ class Competition extends Model
     protected $fillable=['id','photo','name','address','education','age','activity','phone'];
 
     public function events(){
-        return $this->belongsToMany('App\Event');
+        return $this->belongsTo('App\Event');
     }
 }
