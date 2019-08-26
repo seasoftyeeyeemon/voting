@@ -61,7 +61,9 @@ class EventController extends Controller
     public function show($id)
     {
         $event=Event::find($id);
-       return view('user.details',compact('event'));
+        $event_participate_competitiors=$event->competitions('name')->get();
+        // dd($event_participate_competitiors);
+       return view('user.details',compact('event','event_participate_competitiors'));
     }
 
     /**

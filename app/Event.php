@@ -14,6 +14,6 @@ class Event extends Model
       ];
 
       public function competitions(){
-        return $this->belongsToMany('App\Competition');
+        return $this->hasMany('App\Competition');
       }
 }
