@@ -24,7 +24,7 @@ class CreateCompetitionsTable extends Migration
             $table->string('phone');
             $table->integer('vote')->default(0);
             $table->integer('event_id')->unsigned();
-            $table->integer('user_id')->unsigned()->unique();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
            
         });

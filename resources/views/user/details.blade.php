@@ -5,19 +5,14 @@
 <div class="left_bar col-md-9">
     <div class="d-flex align-items-center justify-content-between">
         <h2>{{$event->title}}</h2>
-        @if(Auth::user() == null)
-        <a href="/register" class="btn btn-secondary">To joint this event</a>
-        @else
-        @foreach($event_participate_competitiors as $event_participate_competitior)
-        @if($event_participate_competitior->user_id==Auth::user()->id)
-       
-           <button>You already join this event</button>
-       
-        @else
-        <a href="{{route('competitions.create',$event->id)}}" class="btn btn-secondary">To joint this event</a>
-        @endif
-        @endforeach
-        @endif
+       @if($competitior_exist_in_event== 0)
+       <a href="{{route('competitions.create',$event->id)}}" class="btn btn-secondary">To joint this event</a>
+
+       @else
+       <a href="#" class="btn btn-secondary">Thank You,You already join this event</a>
+       @endif
+    
+
     </div>
     <hr>
    
