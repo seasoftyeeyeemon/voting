@@ -22,7 +22,8 @@
                     @endforeach
                     </ul>   
 
-                    <div aria-label="Page navigation">
+                    {{ $events->links() }}
+                    <!-- <div aria-label="Page navigation">
                         <ul class="pagination justify-content-center">
                             <li class="page-item">
                             <a class="page-link" href="#" aria-label="Previous">
@@ -40,7 +41,7 @@
                             </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
 
                     <h2>PREVIOUS EVENTS</h2>
                     <ul class="pl-0">

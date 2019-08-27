@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Event;
 use Image;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class EventController extends Controller
 {   
@@ -16,7 +17,8 @@ class EventController extends Controller
      */
     public function index()
     {   
-        $events = Event::all();
+
+        $events = Event::paginate(5);
         return view('events.index',['events' => $events]);
     }
 

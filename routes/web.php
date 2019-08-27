@@ -1,5 +1,6 @@
 <?php
 use App\Event;
+use App\Http\Controllers\Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,11 +13,11 @@ use App\Event;
 */
 
 Route::get('/', function () {
-    $events=Event::all();
+    $events=Event::paginate(5);
     return view('user.index',compact('events'));
 });
 
-Route::get('events', 'EventController@index');
+Route::get('events', 'EventController@index')->name('events.index');
 Route::get('events/create', 'EventController@create')->name('events.create');
 Route::get('events/edit/{id}', 'EventController@edit')->name('events.edit');
 Route::post('events/store', 'EventController@store')->name('events.store');

@@ -24,6 +24,13 @@
     <div class="row eventBlogdetail ml-0 mr-0 pt-3 pb-3 mb-4">
         <figure class="col-md-4 pl-0">
             <img src="photo/event.jpg" alt="" class="w-100">
+
+            <figcaption class="vote w-100 text-center pt-1 pb-1 d-flex align-items-center justify-content-center">
+                    <button class="btn btn-success bg-danger"><img src="photo/voteIcon.png" alt=""></button>    
+                    <div class="ml-2">
+                        <span class="text-white font-weight-bold">100 Votes</span>
+                    </div>
+                </figcaption>
         </figure>
 
         <div class="col-md-8">
