@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Event;
 use Image;
 use Illuminate\Support\Facades\DB;
+use App\Competition;
 
 class EventController extends Controller
 {   
@@ -74,9 +75,13 @@ class EventController extends Controller
     public function show($id)
     {
         $event=Event::find($id);
+        $user_id = auth()->id();
+        $competitior_exist_in_event=Competition::where('user_id','=',$user_id)
+                                                ->where('event_id','=', $id)
+                                                ->get()->count();
+        
         $event_participate_competitiors=$event->competitions('name')->get();
-        // dd($event_participate_competitiors);
-       return view('user.details',compact('event','event_participate_competitiors'));
+       return view('user.details',compact('event','competitior_exist_in_event','event_participate_competitiors'));
     }
 
     /**

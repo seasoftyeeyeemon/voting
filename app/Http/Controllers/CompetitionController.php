@@ -83,9 +83,6 @@ class CompetitionController extends Controller
 
         $competition=new Competition();
         $competition = $request->session()->get('competition'); 
-        $competition=$competition->validate([
-            'user_id'=>'unique'
-        ]);
         $competition->save();
         return redirect()->route('competitions.index')
 
